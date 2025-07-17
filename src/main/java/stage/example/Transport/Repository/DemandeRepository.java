@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface DemandeRepository extends JpaRepository<Demande, Long> {
 
-    List<Demande> findByContratClientId(Long userId);
+    List<Demande> findByContratClient_Id(Long clientId);
+
 
     List<Demande> findByStatut(String statut);
 

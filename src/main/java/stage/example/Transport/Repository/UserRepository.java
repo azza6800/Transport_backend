@@ -10,11 +10,9 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByRole(String role);
-    List<User> findByNumAgenceAndRole(Long numAgence, String role);
-    Page<User> findByRoleAndNomContainingIgnoreCaseOrRoleAndPrenomContainingIgnoreCaseOrRoleAndEmailContainingIgnoreCase(
-            String role1, String nom,
-            String role2, String prenom,
-            String role3, String email,
-            Pageable pageable);
+
+    Optional<User> findByEmail(String email);
+    List<User> findByAgences_CodeAgenceAndRole(Long codeAgence, String role);
+
 
 }

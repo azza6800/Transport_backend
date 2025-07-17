@@ -1,36 +1,40 @@
 package stage.example.Transport.Dto;
-
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import stage.example.Transport.Entite.StatutDemande;
 
+import java.math.BigDecimal;
 import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DemandeDto {
-
     private Long id;
     private Long contratId;
 
-    private long avisAliment;
+    private Long avisAliment;
     private String description;
-    private long refFacture;
-    private long refTransp;
-    private float valeurFacture;
+    private Long refFacture;
+    private Long refTransp;
+    private BigDecimal valeurFacture;
+
     private String deviseFacture;
-    private float valeurTotale;
-    private float valeurMarchandise;
-    private float valeurAutre;
+    private BigDecimal valeurTotale;
+    private BigDecimal valeurMarchandise;
+    private BigDecimal valeurAutre;
     private String provenance;
     private String lieuDepart;
     private String lieuDestination;
     private String moyenTransp;
     private String conditions;
-    private Date dateEffet;
+
+    private LocalDate dateEffet;
+
+    private Long agentValidateurId;
 
     private StatutDemande statut;
-    private String commentaireAgent;
 
+    private String commentaireAgent;
 
     public Long getId() {
         return id;
@@ -48,11 +52,11 @@ public class DemandeDto {
         this.contratId = contratId;
     }
 
-    public long getAvisAliment() {
+    public Long getAvisAliment() {
         return avisAliment;
     }
 
-    public void setAvisAliment(long avisAliment) {
+    public void setAvisAliment(Long avisAliment) {
         this.avisAliment = avisAliment;
     }
 
@@ -64,27 +68,27 @@ public class DemandeDto {
         this.description = description;
     }
 
-    public long getRefFacture() {
+    public Long getRefFacture() {
         return refFacture;
     }
 
-    public void setRefFacture(long refFacture) {
+    public void setRefFacture(Long refFacture) {
         this.refFacture = refFacture;
     }
 
-    public long getRefTransp() {
+    public Long getRefTransp() {
         return refTransp;
     }
 
-    public void setRefTransp(long refTransp) {
+    public void setRefTransp(Long refTransp) {
         this.refTransp = refTransp;
     }
 
-    public float getValeurFacture() {
+    public BigDecimal getValeurFacture() {
         return valeurFacture;
     }
 
-    public void setValeurFacture(float valeurFacture) {
+    public void setValeurFacture(BigDecimal valeurFacture) {
         this.valeurFacture = valeurFacture;
     }
 
@@ -96,27 +100,27 @@ public class DemandeDto {
         this.deviseFacture = deviseFacture;
     }
 
-    public float getValeurTotale() {
+    public BigDecimal getValeurTotale() {
         return valeurTotale;
     }
 
-    public void setValeurTotale(float valeurTotale) {
+    public void setValeurTotale(BigDecimal valeurTotale) {
         this.valeurTotale = valeurTotale;
     }
 
-    public float getValeurMarchandise() {
+    public BigDecimal getValeurMarchandise() {
         return valeurMarchandise;
     }
 
-    public void setValeurMarchandise(float valeurMarchandise) {
+    public void setValeurMarchandise(BigDecimal valeurMarchandise) {
         this.valeurMarchandise = valeurMarchandise;
     }
 
-    public float getValeurAutre() {
+    public BigDecimal getValeurAutre() {
         return valeurAutre;
     }
 
-    public void setValeurAutre(float valeurAutre) {
+    public void setValeurAutre(BigDecimal valeurAutre) {
         this.valeurAutre = valeurAutre;
     }
 
@@ -160,12 +164,20 @@ public class DemandeDto {
         this.conditions = conditions;
     }
 
-    public Date getDateEffet() {
+    public LocalDate getDateEffet() {
         return dateEffet;
     }
 
-    public void setDateEffet(Date dateEffet) {
+    public void setDateEffet(LocalDate dateEffet) {
         this.dateEffet = dateEffet;
+    }
+
+    public Long getAgentValidateurId() {
+        return agentValidateurId;
+    }
+
+    public void setAgentValidateurId(Long agentValidateurId) {
+        this.agentValidateurId = agentValidateurId;
     }
 
     public StatutDemande getStatut() {

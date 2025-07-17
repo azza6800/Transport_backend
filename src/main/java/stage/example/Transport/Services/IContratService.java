@@ -15,4 +15,10 @@ public interface IContratService {
     List<Contrat> getAllContrats();
 
     List<Contrat> getContratsByClientId(Long clientId);
+
+
+
+    Contrat closeContrat(Long id);
+
+    void fermerContratsExpireAujourdHui();
 }

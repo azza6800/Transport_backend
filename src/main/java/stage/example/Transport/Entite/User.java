@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @AllArgsConstructor
@@ -17,12 +19,22 @@ public  class User {
     private String username;
     private String motDePasse;
     private String email;
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @Column(nullable = false)
     private boolean actif = true;
     private String nom;
     private String prenom;
-    private Long numAgence ;
+    @ManyToMany
+    @JoinTable(
+            name = "user_agence",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "agence_id")
+    )
+    private List<Agence> agences;
+    @OneToMany(mappedBy = "client")
+    private List<Contrat> contrats;
 
     @Enumerated(EnumType.STRING)
     private TypeDocument typeDocument;
@@ -30,6 +42,22 @@ public  class User {
     private String numeroDocument;
 
     private String raisonSociale;
+
+    public List<Agence> getAgences() {
+        return agences;
+    }
+
+    public void setAgences(List<Agence> agences) {
+        this.agences = agences;
+    }
+
+    public List<Contrat> getContrats() {
+        return contrats;
+    }
+
+    public void setContrats(List<Contrat> contrats) {
+        this.contrats = contrats;
+    }
 
     public boolean isActif() {
         return actif;
@@ -63,11 +91,11 @@ public  class User {
         this.motDePasse = motDePasse;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -95,13 +123,7 @@ public  class User {
         this.prenom = prenom;
     }
 
-    public Long getNumAgence() {
-        return numAgence;
-    }
 
-    public void setNumAgence(Long numAgence) {
-        this.numAgence = numAgence;
-    }
 
     public TypeDocument getTypeDocument() {
         return typeDocument;

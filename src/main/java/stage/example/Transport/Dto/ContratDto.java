@@ -2,6 +2,7 @@ package stage.example.Transport.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import stage.example.Transport.Entite.StatutContrat;
 import stage.example.Transport.Entite.TypeContrat;
 
 import java.util.Date;
@@ -9,27 +10,28 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContratDto {
-    private Long id;
+
     private TypeContrat typeContrat;
-    private String statut;
+    private StatutContrat statut;
     private Date dateEffet;
     private Date dateDelivrance;
     private Date dateFin;
     private Long clientId;
+    private List<Long> demandeIds;
 
-    public Long getId() {
-        return id;
+    public TypeContrat getTypeContrat() {
+        return typeContrat;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTypeContrat(TypeContrat typeContrat) {
+        this.typeContrat = typeContrat;
     }
 
-    public String getStatut() {
+    public StatutContrat getStatut() {
         return statut;
     }
 
-    public void setStatut(String statut) {
+    public void setStatut(StatutContrat statut) {
         this.statut = statut;
     }
 
@@ -57,20 +59,20 @@ public class ContratDto {
         this.dateFin = dateFin;
     }
 
-    public TypeContrat getTypeContrat() {
-        return typeContrat;
-    }
-
-    public void setTypeContrat(TypeContrat typeContrat) {
-        this.typeContrat = typeContrat;
-    }
-
     public Long getClientId() {
         return clientId;
     }
 
     public void setClientId(Long clientId) {
         this.clientId = clientId;
+    }
+
+    public List<Long> getDemandeIds() {
+        return demandeIds;
+    }
+
+    public void setDemandeIds(List<Long> demandeIds) {
+        this.demandeIds = demandeIds;
     }
 }
 

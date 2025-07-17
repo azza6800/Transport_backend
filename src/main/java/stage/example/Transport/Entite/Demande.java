@@ -1,8 +1,9 @@
 package stage.example.Transport.Entite;
 
 import jakarta.persistence.*;
-import org.aspectj.weaver.loadtime.Agent;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -16,29 +17,50 @@ public class Demande {
     @JoinColumn(name = "contrat_id")
     private Contrat contrat;
 
+
     private long avisAliment;
     private String description;
     private long refFacture;
     private long refTransp;
-    private float valeurFacture;
+    private BigDecimal valeurFacture;
+
     private String deviseFacture;
-    private float valeurTotale;
-    private float valeurMarchandise;
-    private float valeurAutre;
+    private BigDecimal valeurTotale;
+    private BigDecimal valeurMarchandise;
+    private BigDecimal valeurAutre;
     private String provenance;
     private String lieuDepart;
     private String lieuDestination;
     private String moyenTransp;
     private String conditions;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateEffet;
+    private LocalDate dateEffet;
+
+    @ManyToOne
+    @JoinColumn(name = "agent_id")
+    private User agentValidateur;
 
 
     @Enumerated(EnumType.STRING)
     private StatutDemande statut;
 
     private String commentaireAgent;
+
+    public LocalDate getDateEffet() {
+        return dateEffet;
+    }
+
+    public void setDateEffet(LocalDate dateEffet) {
+        this.dateEffet = dateEffet;
+    }
+
+    public User getAgentValidateur() {
+        return agentValidateur;
+    }
+
+    public void setAgentValidateur(User agentValidateur) {
+        this.agentValidateur = agentValidateur;
+    }
 
     public Long getId() {
         return id;
@@ -88,13 +110,7 @@ public class Demande {
         this.refTransp = refTransp;
     }
 
-    public float getValeurFacture() {
-        return valeurFacture;
-    }
 
-    public void setValeurFacture(float valeurFacture) {
-        this.valeurFacture = valeurFacture;
-    }
 
     public String getDeviseFacture() {
         return deviseFacture;
@@ -104,27 +120,27 @@ public class Demande {
         this.deviseFacture = deviseFacture;
     }
 
-    public float getValeurTotale() {
+    public BigDecimal getValeurTotale() {
         return valeurTotale;
     }
 
-    public void setValeurTotale(float valeurTotale) {
+    public void setValeurTotale(BigDecimal valeurTotale) {
         this.valeurTotale = valeurTotale;
     }
 
-    public float getValeurMarchandise() {
+    public BigDecimal getValeurMarchandise() {
         return valeurMarchandise;
     }
 
-    public void setValeurMarchandise(float valeurMarchandise) {
+    public void setValeurMarchandise(BigDecimal valeurMarchandise) {
         this.valeurMarchandise = valeurMarchandise;
     }
 
-    public float getValeurAutre() {
+    public BigDecimal getValeurAutre() {
         return valeurAutre;
     }
 
-    public void setValeurAutre(float valeurAutre) {
+    public void setValeurAutre(BigDecimal valeurAutre) {
         this.valeurAutre = valeurAutre;
     }
 
@@ -168,14 +184,13 @@ public class Demande {
         this.conditions = conditions;
     }
 
-    public Date getDateEffet() {
-        return dateEffet;
+    public BigDecimal getValeurFacture() {
+        return valeurFacture;
     }
 
-    public void setDateEffet(Date dateEffet) {
-        this.dateEffet = dateEffet;
+    public void setValeurFacture(BigDecimal valeurFacture) {
+        this.valeurFacture = valeurFacture;
     }
-
 
     public StatutDemande getStatut() {
         return statut;

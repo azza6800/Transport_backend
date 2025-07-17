@@ -12,17 +12,18 @@ public interface IDemandeService {
 
     Optional<Demande> getDemandeById(Long id);
 
+
     List<Demande> getAllDemandes();
 
     List<Demande> getDemandesByUserId(Long userId);
+
 
     List<Demande> getDemandesByContratId(Long contratId);
 
     List<Demande> getDemandesByStatut(String statut);
 
-    List<Demande> getDemandesByAgence(Long numAgence);
-
     Demande createDemandeFromDto(Long clientId, DemandeDto dto);
 
-    Demande createDemandeFromDto(Long clientId, DemandeDto dto);
+
+    Demande validerDemande(Long demandeId);
 }

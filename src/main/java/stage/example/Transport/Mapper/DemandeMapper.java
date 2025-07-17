@@ -7,7 +7,10 @@ import stage.example.Transport.Dto.DemandeDto;
     @Mapper(componentModel = "spring",uses = {ContratMapper.class})
 public interface DemandeMapper {
 
-    DemandeDto toDto(Demande demande);
+        @Mapping(source = "agentValidateur.id", target = "agentValidateurId")
+        DemandeDto toDto(Demande demande);
 
-    Demande toEntity(DemandeDto dto);
-}
+        @Mapping(source = "agentValidateurId", target = "agentValidateur.id")
+        Demande toEntity(DemandeDto dto);
+
+    }

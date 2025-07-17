@@ -1,17 +1,16 @@
-package stage.example.Transport.Service;
+package stage.example.Transport.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import stage.example.Transport.Dto.DemandeDto;
 import stage.example.Transport.Entite.Contrat;
 import stage.example.Transport.Entite.Demande;
-import stage.example.Transport.Mapper.ContratMapper;
+import stage.example.Transport.Entite.StatutContrat;
+import stage.example.Transport.Entite.StatutDemande;
 import stage.example.Transport.Mapper.DemandeMapper;
 import stage.example.Transport.Repository.ContratRepository;
 import stage.example.Transport.Repository.DemandeRepository;
-import stage.example.Transport.Services.IDemandeService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +41,7 @@ public class DemandeService implements IDemandeService {
 
     @Override
     public List<Demande> getDemandesByUserId(Long userId) {
-        return demandeRepository.findByContratClientId(userId);
+        return demandeRepository.findByContratClient_Id(userId);
     }
 
     @Override
@@ -53,15 +52,7 @@ public class DemandeService implements IDemandeService {
     public List<Demande> getDemandesByStatut(String statut) {
         return demandeRepository.findByStatut(statut);
     }
-    @Override
-    public List<Demande> getDemandesByAgence(Long numAgence) {
-        List<Contrat> contrats = contratRepository.findByClientNumAgence(numAgence);
-        List<Demande> result = new ArrayList<>();
-        for (Contrat contrat : contrats) {
-            result.addAll(demandeRepository.findByContratId(contrat.getId()));
-        }
-        return result;
-    }
+
     @Override
     public Demande createDemandeFromDto(Long clientId, DemandeDto dto) {
         Optional<Contrat> contratOpt = contratRepository.findById(dto.getContratId());
@@ -79,5 +70,22 @@ public class DemandeService implements IDemandeService {
 
         return demandeRepository.save(demande);
     }
+    @Override
+    public Demande validerDemande(Long demandeId) {
+        Demande demande = demandeRepository.findById(demandeId)
+                .orElseThrow(() -> new RuntimeException("Demande non trouvée avec l'ID : " + demandeId));
+
+        demande.setStatut(StatutDemande.VALIDEE);
+
+        Contrat contrat = demande.getContrat();
+        if ("VOYAGE".equals(contrat.getTypeContrat())) {
+            contrat.setStatut(StatutContrat.FERME);
+            contratRepository.save(contrat);
+        }
+
+        return demandeRepository.save(demande);
+    }
+
+
 
 }

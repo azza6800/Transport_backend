@@ -19,11 +19,15 @@ public class Contrat {
     @Enumerated(EnumType.STRING)
     private TypeContrat typeContrat;
 
-    private String statut;
+    @Enumerated(EnumType.STRING)
+    private StatutContrat statut;
 
     private Date dateEffet;
     private Date dateDelivrance;
     private Date dateFin;
+
+    @OneToMany(mappedBy = "contrat")
+    private List<Demande> demandes;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
@@ -46,11 +50,11 @@ public class Contrat {
         this.typeContrat = typeContrat;
     }
 
-    public String getStatut() {
+    public StatutContrat getStatut() {
         return statut;
     }
 
-    public void setStatut(String statut) {
+    public void setStatut(StatutContrat statut) {
         this.statut = statut;
     }
 

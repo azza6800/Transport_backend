@@ -1,5 +1,7 @@
 package stage.example.Transport.Services;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import stage.example.Transport.Entite.User;
 
 import java.util.List;
@@ -7,18 +9,21 @@ import java.util.Optional;
 
 public interface IUserService {
 
-    User createUser(User user);
 
-    List<User> getAllUsers();
+    User saveUser(User user);
 
-    Optional<User> getUserById(Long id);
-
-    User updateUser(Long id, User user);
+    User updateUser(Long id, User updatedUser);
 
     void deleteUser(Long id);
 
+    User getUserById(Long id);
+
+    List<User> getAllUsers();
+
     List<User> getUsersByRole(String role);
 
-    List<User> getUsersByAgenceAndRole(Long numAgence, String role);
+    Optional<User> getUserByEmail(String email);
+
+    List<User> getUsersByAgenceAndRole(Long codeAgence, String role);
 }
 

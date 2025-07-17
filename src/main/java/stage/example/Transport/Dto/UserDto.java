@@ -1,24 +1,35 @@
 package stage.example.Transport.Dto;
 
-import lombok.*;
+import stage.example.Transport.Entite.Role;
 import stage.example.Transport.Entite.TypeDocument;
+import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserDto {
+
+
+    private Long id;
     private String username;
     private String motDePasse;
     private String email;
-    private String role;
+    private Role role;
     private boolean actif;
     private String nom;
     private String prenom;
-    private Long numAgence;
+
+    private List<Long> agenceIds;
+    private List<Long> contratIds;
+
     private TypeDocument typeDocument;
     private String numeroDocument;
     private String raisonSociale;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -28,6 +39,13 @@ public class UserDto {
         this.username = username;
     }
 
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
 
     public String getEmail() {
         return email;
@@ -37,20 +55,20 @@ public class UserDto {
         this.email = email;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public boolean isActif() {
         return actif;
     }
 
     public void setActif(boolean actif) {
         this.actif = actif;
-    }
-
-    public String getMotDePasse() {
-        return motDePasse;
-    }
-
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
     }
 
     public String getNom() {
@@ -69,12 +87,20 @@ public class UserDto {
         this.prenom = prenom;
     }
 
-    public Long getNumAgence() {
-        return numAgence;
+    public List<Long> getAgenceIds() {
+        return agenceIds;
     }
 
-    public void setNumAgence(Long numAgence) {
-        this.numAgence = numAgence;
+    public void setAgenceIds(List<Long> agenceIds) {
+        this.agenceIds = agenceIds;
+    }
+
+    public List<Long> getContratIds() {
+        return contratIds;
+    }
+
+    public void setContratIds(List<Long> contratIds) {
+        this.contratIds = contratIds;
     }
 
     public TypeDocument getTypeDocument() {
@@ -99,13 +125,5 @@ public class UserDto {
 
     public void setRaisonSociale(String raisonSociale) {
         this.raisonSociale = raisonSociale;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }
